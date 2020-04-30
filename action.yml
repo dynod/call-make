@@ -4,13 +4,17 @@ description: Call a make target
 inputs:
     path:
         description: Path to cd to before calling make
-        required: true
+        required: false
     target:
         description: Make target to be called
         required: true
+    env:
+        description: List (NAME=VALUE,NAME2=VALUE) of env variables to be set
+        required: false
 runs:
     using: docker
-    image: Dockerfile
+    image: docker://dynod/call-make-action:1.0.0
     args:
         - ${{ inputs.path }}
         - ${{ inputs.target }}
+        - ${{ inputs.env }}
