@@ -16,14 +16,13 @@ export HOME=/home/user
 # Prepare some environment
 export CI=1
 export CI_PROJECT=`basename ${GITHUB_REPOSITORY}`
-IS_TAG="$(echo "${GITHUB_REF}" | grep "refs/tags/" || true)"
 REPO_HELPER=tools/devenv/helpers/repo.py
 
 # Compute project path if not provided
 if test -z "${PROJECT_PATH}" -a -e "${REPO_HELPER}"; then
-    if test "${CI_PROJECT}" == "workspace" -a -n "${IS_TAG}"; then
-        # Deduce project from tag name
-        export CI_PROJECT="$(echo ${GITHUB_REF} | sed -e "s|refs/tags/\(.*\)-.*|\1|")"
+    if test "${CI_PROJECT}" == "workspace"; then
+        # Deduce project from tag/head name
+        export CI_PROJECT="$(echo ${GITHUB_REF} | sed -e "s|refs/.*/\(.*\)-.*|\1|")"
     fi
 
     # Project path will be the detected CI one
