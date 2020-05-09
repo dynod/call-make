@@ -13,7 +13,7 @@ inputs:
         required: false
 runs:
     using: docker
-    image: docker://dynod/call-make-action:1.0.0
+    image: docker://dynod/call-make-action:1.1.0
     args:
         - ${{ inputs.path }}
         - ${{ inputs.target }}

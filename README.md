@@ -6,7 +6,7 @@ Github action to call a make target
 To use this action, just declare a step like this in your workflow file:
 ```yaml
 - name: My step
-  uses: dynod/call-make@1.0.0
+  uses: dynod/call-make@1.1.0
   with:
       path: some/path
       target: all
